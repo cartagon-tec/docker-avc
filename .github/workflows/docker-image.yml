@@ -43,7 +43,7 @@ jobs:
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
         script: |
-          docker stop $ECR_REPOSITORY:latest || true
-          docker rm $ECR_REPOSITORY:latest || true
+          # # docker stop $ECR_REPOSITORY:latest || true
+          # # docker rm $ECR_REPOSITORY:latest || true
           docker pull $ECR_REPOSITORY:$IMAGE_TAG
-          docker run -d --name webapp -p 80:5000 $ECR_REPOSITORY:$IMAGE_TAG
+          # docker run -d --name webapp -p 80:5000 $ECR_REPOSITORY:$IMAGE_TAG
