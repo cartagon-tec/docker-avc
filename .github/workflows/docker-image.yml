@@ -6,7 +6,7 @@ on:
 
 env:
   # TODO: Cambiar por tu URI de repositorio
-  ECR_REPOSITORY: tu-repo-ecr
+  ECR_REPOSITORY: 865051709782.dkr.ecr.eu-west-3.amazonaws.com/docker
   IMAGE_TAG: latest
 
 jobs:
