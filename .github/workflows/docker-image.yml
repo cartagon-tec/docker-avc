@@ -34,3 +34,12 @@ jobs:
       run: |
         docker build -t $ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REPOSITORY:$IMAGE_TAG
+
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: whoami
