@@ -42,4 +42,4 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-        script: free
+        script: aws ecr get-login-password --region eu-west-3 | docker login --username AWS --password-stdin 865051709782.dkr.ecr.eu-west-3.amazonaws.com/docker
