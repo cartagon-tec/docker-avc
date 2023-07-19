@@ -45,5 +45,8 @@ jobs:
         script: |
            aws ecr get-login-password --region eu-west-3 | docker login --username AWS --password-stdin 865051709782.dkr.ecr.eu-west-3.amazonaws.com/docker 
            docker pull 865051709782.dkr.ecr.eu-west-3.amazonaws.com/docker:latest
+           docker stop test_server
+           docker rm test_server
+           docker run --detach --name test_server - p 80:5000 865051709782.dkr.ecr.eu-west-3.amazonaws.com/docker:latest
            
              
