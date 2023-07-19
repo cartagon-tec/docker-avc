@@ -46,9 +46,9 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
            aws ecr get-login-password --region eu-west-3 | docker login --username AWS --password-stdin $ECR_REPOSITORY 
-           docker pull 865051709782.dkr.ecr.eu-west-3.amazonaws.com/docker:latest
+           docker pull ${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
            docker stop test_server
            docker rm test_server
-           docker run --detach --name test_server -p 80:5000 865051709782.dkr.ecr.eu-west-3.amazonaws.com/docker:latest
+           docker run --detach --name test_server -p 80:5000 ${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
            
              
