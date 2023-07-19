@@ -5,8 +5,8 @@ on:
     branches: [ main ]
 
 env:
-  # TODO: Cambiar por tu URI de reposditorio
-  ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+  # TODO: Cambiar por tu URI de repositorio
+  # ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
   IMAGE_TAG: latest
 
 jobs:
@@ -33,8 +33,8 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         
       run: |
-        docker build -t ${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }} .
-        docker push ${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
+        docker build -t ${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }} .
+        docker push ${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
       
 
     - name: executing remote ssh commands using ssh key
