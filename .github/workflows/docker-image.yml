@@ -6,7 +6,7 @@ on:
 
 env:
   # TODO: Cambiar por tu URI de repositorio
-  
+  ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
   IMAGE_TAG: latest
 
 jobs:
@@ -33,7 +33,7 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         
       run: |
-        docker build -t ${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }} .
+        docker build -t ${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }} .
         docker push ${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
       
 
