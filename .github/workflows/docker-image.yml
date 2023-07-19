@@ -6,7 +6,7 @@ on:
 
 env:
   # TODO: Cambiar por tu URI de repositorio
-  ECR_REPOSITORY: 865051709782.dkr.ecr.eu-west-3.amazonaws.com/docker
+  ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
   IMAGE_TAG: latest
 
 jobs:
@@ -32,8 +32,8 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
       run: |
-        docker build -t $ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REPOSITORY:$IMAGE_TAG
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
     - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@v0.1.10
@@ -43,7 +43,7 @@ jobs:
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
         script: |
-           aws ecr get-login-password --region eu-west-3 | docker login --username AWS --password-stdin 865051709782.dkr.ecr.eu-west-3.amazonaws.com/docker 
+           aws ecr get-login-password --region eu-west-3 | docker login --username AWS --password-stdin $ECR_REPOSITORY 
            docker pull 865051709782.dkr.ecr.eu-west-3.amazonaws.com/docker:latest
            docker stop test_server
            docker rm test_server
