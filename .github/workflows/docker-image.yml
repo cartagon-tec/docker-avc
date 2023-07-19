@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 env:
-  # TODO: Cambiar por tu URI de repositorio
+  # TODO: Cambiar por tu URI de reposditorio
   ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
   IMAGE_TAG: latest
 
