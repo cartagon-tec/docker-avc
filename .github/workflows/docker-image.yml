@@ -5,8 +5,6 @@ on:
     branches: [ main ]
 
 env:
-  # TODO: Cambiar por tu URI de repositorio
-  # ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
   IMAGE_TAG: ${{ github.run_number }}
 
 jobs:
