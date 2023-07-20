@@ -34,6 +34,7 @@ jobs:
         
       run: |
         aws ec2 start-instances --instance-ids ${{secrets.AWS_EC2_INSTANCE_ID }}
+        sleep 60
         docker build -t ${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }} .
         docker push ${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
       
