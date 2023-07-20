@@ -33,6 +33,7 @@ jobs:
         # ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         
       run: |
+        sudo apt install awscli
         docker build -t ${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }} .
         docker push ${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
       
