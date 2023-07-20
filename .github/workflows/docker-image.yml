@@ -45,7 +45,7 @@ jobs:
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
         script: |
-           aws ecr get-login-password --region eu-west-3 | docker login --username AWS --password-stdin $ECR_REPOSITORY 
+           aws ecr get-login-password --region eu-west-3 | docker login --username AWS --password-stdin ${{ secrets.ECR_REPOSITORY }} 
            docker rmi $(docker images -a -q)
            docker pull ${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
            docker stop test_server
